@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>VideoDownloader - Download YouTube, Facebook, Instagram, TikTok Videos Free</title>
+  <meta name="description" content="VideoDownloader - Free online video downloader. Download videos from YouTube, Facebook, Instagram, Twitter/X, TikTok in HD 1080p, 720p, 480p, 360p and MP3 audio. Fast, free and no registration required." />
+  <meta name="keywords" content="video downloader, youtube downloader, facebook video downloader, instagram downloader, tiktok downloader, twitter video downloader, download youtube video, free video downloader, HD video downloader, mp3 downloader, videodownloader" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="VideoDownloader" />
+  <link rel="canonical" href="https://yourwebsite.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="VideoDownloader - Download Videos from Any Platform Free" />
+  <meta property="og:description" content="Download videos from YouTube, Facebook, Instagram, TikTok, Twitter in HD quality. Free, fast, no registration." />
+  <meta property="og:url" content="https://yourwebsite.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VideoDownloader - Free Video Downloader Online" />
+  <meta name="twitter:description" content="Download videos from YouTube, Facebook, Instagram, TikTok & Twitter. Free, HD quality, MP4 & MP3." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "VideoDownloader",
+    "url": "https://yourwebsite.com/",
+    "description": "Free online video downloader. Download videos from YouTube, Facebook, Instagram, Twitter/X, TikTok in HD quality.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #eff6ff;
+      --primary-glow: rgba(37, 99, 235, 0.15);
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --destructive: #ef4444;
+      --destructive-bg: #fef2f2;
+      --success-bg: #f0fdf4;
+      --success: #16a34a;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.05);
+      --font: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: var(--font); border: none; outline: none; }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── HEADER */
+    header { position: sticky; top: 0; z-index: 100; background: rgba(248,250,252,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+    .logo-icon { width: 38px; height: 38px; background: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
+    .logo-icon svg { width: 20px; height: 20px; }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    nav a:hover { color: var(--primary); }
+
+    /* ── HERO */
+    .hero { padding: 80px 0 60px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%); pointer-events: none; }
+    .hero > * { position: relative; z-index: 1; }
+
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); color: var(--primary); border: 1px solid rgba(37,99,235,0.2); border-radius: 999px; padding: 5px 14px; font-size: 13px; font-weight: 600; margin-bottom: 24px; }
+    .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)} }
+
+    h1 { font-size: clamp(2rem, 6vw, 4rem); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; color: var(--text); margin-bottom: 20px; }
+    h1 span { color: var(--primary); }
+    .hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); color: var(--text-muted); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
+
+    /* ── PILLS */
+    .platform-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 28px; }
+    .pill { padding: 8px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; background: var(--bg-card); color: var(--text); border: 1.5px solid var(--border); transition: all .2s; }
+    .pill:hover { border-color: var(--primary); color: var(--primary); }
+    .pill.active { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 4px 14px rgba(37,99,235,.35); }
+
+    /* ── URL INPUT */
+    .input-wrap { max-width: 780px; margin: 0 auto; }
+    .input-box { display: flex; align-items: center; background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: border-color .2s, box-shadow .2s; box-shadow: var(--shadow-sm); }
+    .input-box:focus-within { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-glow); }
+    .input-box.error { border-color: var(--destructive); box-shadow: 0 0 0 4px rgba(239,68,68,.1); }
+    .input-icon { padding: 0 16px; color: var(--text-muted); flex-shrink: 0; }
+    .input-icon svg { width: 22px; height: 22px; display: block; }
+    #url-input { flex: 1; border: none; outline: none; font-family: var(--font); font-size: 16px; font-weight: 500; color: var(--text); background: transparent; padding: 20px 0; min-width: 0; }
+    #url-input::placeholder { color: #94a3b8; }
+    .submit-btn { margin: 8px; padding: 14px 24px; background: var(--primary); color: #fff; border-radius: var(--radius); font-size: 15px; font-weight: 700; white-space: nowrap; transition: background .2s; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .submit-btn:hover:not(:disabled) { background: var(--primary-dark); }
+    .submit-btn:disabled { opacity: .7; cursor: not-allowed; }
+    .submit-btn svg { width: 18px; height: 18px; }
+    .spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to{transform:rotate(360deg)} }
+
+    .error-msg { display: none; align-items: center; gap: 8px; color: var(--destructive); background: var(--destructive-bg); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; font-weight: 500; margin-top: 12px; }
+    .error-msg.show { display: flex; }
+    .error-msg svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── INSTRUCTIONS */
+    .instructions-box { display: none; max-width: 780px; margin: 16px auto 0; background: var(--primary-light); border: 1px solid rgba(37,99,235,.2); border-radius: var(--radius); padding: 14px 18px; text-align: left; }
+    .instructions-box.show { display: flex; align-items: flex-start; gap: 12px; }
+    .instr-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: var(--primary); }
+    .instr-title { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 3px; }
+    .instr-text { font-size: 13px; color: #334155; line-height: 1.6; }
+
+    /* ── RESULTS */
+    #results-section { display: none; max-width: 920px; margin: 40px auto 0; animation: slideUp .4s ease; }
+    #results-section.show { display: block; }
+    @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    .results-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
+
+    .results-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; border-bottom: 1px solid var(--border); background: #f8fafc; flex-wrap: wrap; }
+    .video-thumb { width: 120px; height: 72px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; background: #e2e8f0; }
+    .video-thumb-placeholder { width: 120px; height: 72px; border-radius: var(--radius-sm); background: linear-gradient(135deg,#e0e7ff,#dbeafe); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .video-thumb-placeholder svg { width: 28px; height: 28px; color: #94a3b8; }
+    .video-info { flex: 1; min-width: 0; text-align: left; }
+    .video-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .video-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .meta-badge { font-size: 12px; font-weight: 600; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+    .ready-badge { background: #dcfce7; color: #16a34a; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+
+    .results-body { padding: 20px 24px; }
+    .section-label { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--text); padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .section-label svg { width: 17px; height: 17px; color: var(--primary); }
+    .quality-list { margin-bottom: 24px; }
+
+    .quality-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid transparent; transition: all .15s; }
+    .quality-row:hover { background: var(--bg); border-color: var(--border); }
+    .quality-left { display: flex; align-items: center; gap: 10px; }
+    .format-tag { background: var(--primary-light); color: var(--primary); font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 5px; letter-spacing: .5px; }
+    .quality-label { font-size: 14px; font-weight: 600; color: var(--text); }
+    .audio-badge { font-size: 11px; font-weight: 600; color: var(--success); background: var(--success-bg); padding: 2px 8px; border-radius: 4px; }
+    .quality-right { display: flex; align-items: center; gap: 12px; }
+
+    .dl-btn { padding: 8px 18px; background: #f1f5f9; color: var(--text); border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; transition: all .2s; cursor: pointer; border: none; }
+    .dl-btn:hover:not(:disabled) { background: var(--primary); color: #fff; box-shadow: 0 4px 12px rgba(37,99,235,.25); }
+    .dl-btn svg { width: 14px; height: 14px; }
+    .dl-btn:disabled { opacity: .7; cursor: not-allowed; background: #dbeafe; color: var(--primary); }
+
+    /* ── Download toast ── */
+    #dl-toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px); background: #1e293b; color: #f8fafc; padding: 14px 22px; border-radius: 12px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.25); z-index: 9999; transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .3s; opacity: 0; pointer-events: none; white-space: nowrap; }
+    #dl-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    #dl-toast.success { background: #15803d; }
+    #dl-toast.error   { background: #b91c1c; }
+    #dl-toast .toast-spin { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
+    #dl-toast .toast-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ── Dependency warning banner ── */
+    #dep-warn { display:none; background:#fef9c3; border:1px solid #fbbf24; border-radius:10px; padding:12px 18px; margin: 10px auto; max-width:780px; font-size:13px; color:#78350f; font-weight:500; }
+    #dep-warn.show { display: block; }
+
+    .loading-overlay { display: none; text-align: center; padding: 20px; color: var(--text-muted); font-size: 14px; }
+    .loading-overlay.show { display: block; }
+
+    /* ── HOW IT WORKS */
+    #how-it-works { padding: 80px 0; background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .section-title { text-align: center; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; letter-spacing: -.8px; color: var(--text); margin-bottom: 10px; }
+    .section-subtitle { text-align: center; color: var(--text-muted); font-size: 15px; margin-bottom: 48px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .step-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; transition: all .2s; }
+    .step-card:hover { border-color: var(--primary); box-shadow: 0 6px 20px rgba(0,0,0,.08); transform: translateY(-2px); }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+    .step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PLATFORMS */
+    #supported-sites { padding: 80px 0; }
+    .platforms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+    .platform-card { background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 26px 18px; text-align: center; transition: all .2s; cursor: pointer; }
+    .platform-card:hover { border-color: var(--primary); box-shadow: 0 6px 20px rgba(0,0,0,.07); transform: translateY(-3px); }
+    .platform-card.active { border-color: var(--primary); background: var(--primary-light); }
+    .platform-logo { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+    .platform-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .platform-desc { font-size: 12px; color: var(--text-muted); }
+
+    /* ── FOOTER */
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 0; text-align: center; }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; color: #f8fafc; font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+    .footer-logo-icon { width: 34px; height: 34px; background: var(--primary); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: #fff; }
+    .footer-logo-icon svg { width: 18px; height: 18px; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin: 14px 0 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: #64748b; transition: color .2s; }
+    .footer-links a:hover { color: var(--primary); }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.06); margin: 16px 0; }
+    .footer-copy { font-size: 12px; color: #475569; }
+    .footer-disclaimer { font-size: 11px; color: #334155; margin-top: 8px; line-height: 1.6; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+    /* ── RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { gap: 12px; }
+      nav a { font-size: 13px; }
+      .hero { padding: 50px 0 40px; }
+      .audio-badge { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="VideoDownloader">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </div>
+        VideoDownloader
+      </a>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#supported-sites">Supported Sites</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Download Toast Notification -->
+<div id="dl-toast">
+  <div class="toast-spin" id="toast-spin"></div>
+  <span class="toast-icon" id="toast-icon" style="display:none"></span>
+  <span id="toast-msg">Preparing download, please wait...</span>
+</div>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="badge"><div class="badge-dot"></div> Free &amp; Unlimited Downloads</div>
+
+      <!-- Dependency warning (shown if yt-dlp/ffmpeg missing) -->
+      <div id="dep-warn"></div>
+      <h1>Download Videos from <span>Any Platform</span></h1>
+      <p class="hero-sub">YouTube, Facebook, Instagram, Twitter/X, TikTok — all in one place.<br>HD quality with audio included, completely free.</p>
+
+      <!-- Platform Pills -->
+      <div class="platform-pills" id="platform-pills">
+        <button class="pill" data-platform="youtube"   onclick="selectPlatform('youtube')">YouTube</button>
+        <button class="pill" data-platform="facebook"  onclick="selectPlatform('facebook')">Facebook</button>
+        <button class="pill" data-platform="instagram" onclick="selectPlatform('instagram')">Instagram</button>
+        <button class="pill" data-platform="twitter"   onclick="selectPlatform('twitter')">Twitter (X)</button>
+        <button class="pill" data-platform="tiktok"    onclick="selectPlatform('tiktok')">TikTok</button>
+      </div>
+
+      <!-- URL Input -->
+      <div class="input-wrap">
+        <form onsubmit="handleSubmit(event)">
+          <div class="input-box" id="input-box">
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </div>
+            <input type="text" id="url-input" placeholder="Paste your video URL here (e.g. https://youtube.com/watch?v=...)" autocomplete="off" spellcheck="false" oninput="clearError()" aria-label="Video URL" />
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <div id="btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+              <span id="btn-text">Get Download Links</span>
+            </button>
+          </div>
+        </form>
+        <div class="error-msg" id="error-msg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="error-text"></span>
+        </div>
+      </div>
+
+      <!-- Platform Instructions -->
+      <div class="instructions-box" id="instructions-box">
+        <svg class="instr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <div>
+          <div class="instr-title" id="instr-title"></div>
+          <div class="instr-text" id="instr-text"></div>
+        </div>
+      </div>
+
+      <!-- Download Results -->
+      <div id="results-section">
+        <div class="results-card">
+          <div class="results-header">
+            <div id="thumb-wrap"></div>
+            <div class="video-info">
+              <div class="video-title" id="video-title"></div>
+              <div class="video-meta">
+                <span class="meta-badge" id="platform-meta"></span>
+                <span class="meta-badge" id="duration-meta"></span>
+                <span class="ready-badge">Ready to Download</span>
+              </div>
+            </div>
+          </div>
+          <div class="results-body">
+            <div class="section-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Video Download Options
+            </div>
+            <div class="quality-list" id="video-options"></div>
+            <div class="section-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              Audio Only (MP3)
+            </div>
+            <div class="quality-list" id="audio-options"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Download any video in 3 simple steps</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-title">Copy the Video URL</div>
+          <p class="step-desc">Go to YouTube, Facebook, Instagram, TikTok or Twitter and copy the URL from the address bar or share button.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-title">Paste &amp; Get Links</div>
+          <p class="step-desc">Paste the URL in the box above and click "Get Download Links". We fetch all available qualities instantly.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-title">Choose &amp; Download</div>
+          <p class="step-desc">Pick your quality — 1080p HD, 720p, 480p, 360p or MP3 audio — all with audio included. Click Download.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Platforms -->
+  <section id="supported-sites">
+    <div class="container">
+      <h2 class="section-title">Popular Download Tools</h2>
+      <p class="section-subtitle">Click any platform to get started instantly</p>
+      <div class="platforms-grid">
+        <div class="platform-card" onclick="selectFromGrid('youtube')" id="card-youtube">
+          <div class="platform-logo" style="background:#fff0f0;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div class="platform-name">YouTube</div>
+          <div class="platform-desc">Videos, Shorts &amp; Playlists</div>
+        </div>
+        <div class="platform-card" onclick="selectFromGrid('facebook')" id="card-facebook">
+          <div class="platform-logo" style="background:#eff6ff;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div class="platform-name">Facebook</div>
+          <div class="platform-desc">Videos &amp; Reels</div>
+        </div>
+        <div class="platform-card" onclick="selectFromGrid('instagram')" id="card-instagram">
+          <div class="platform-logo" style="background:#fff0f7;">
+            <svg width="34" height="34" viewBox="0 0 24 24"><defs><linearGradient id="ig" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#f09433"/><stop offset="25%" style="stop-color:#e6683c"/><stop offset="50%" style="stop-color:#dc2743"/><stop offset="75%" style="stop-color:#cc2366"/><stop offset="100%" style="stop-color:#bc1888"/></linearGradient></defs><path fill="url(#ig)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="platform-name">Instagram</div>
+          <div class="platform-desc">Posts, Reels &amp; Stories</div>
+        </div>
+        <div class="platform-card" onclick="selectFromGrid('twitter')" id="card-twitter">
+          <div class="platform-logo" style="background:#f0f9ff;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="#000"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </div>
+          <div class="platform-name">Twitter / X</div>
+          <div class="platform-desc">Tweet Videos</div>
+        </div>
+        <div class="platform-card" onclick="selectFromGrid('tiktok')" id="card-tiktok">
+          <div class="platform-logo" style="background:#f0fdf4;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="#000"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.3a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.69a8.27 8.27 0 0 0 4.84 1.56V6.8a4.85 4.85 0 0 1-1.08-.11z"/></svg>
+          </div>
+          <div class="platform-name">TikTok</div>
+          <div class="platform-desc">Videos without Watermark</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <div class="footer-logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      VideoDownloader
+    </div>
+    <p class="footer-tagline" style="font-size:14px;color:#64748b;margin-bottom:4px;">Download any video from any platform, free.</p>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#supported-sites">Supported Sites</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+    <hr class="footer-divider" />
+    <p class="footer-copy">&copy; 2025 VideoDownloader. All rights reserved.</p>
+    <p class="footer-disclaimer">This tool is for personal use only. Please respect copyright laws and the terms of service of the platforms you download from.</p>
+  </div>
+</footer>
+
+<script>
+  // ── Config ────────────────────────────────────────────────────────────────
+  // If your API server is on a different domain, change this:
+  const API_BASE = window.location.hostname === 'yourwebsite.com'
+    ? 'https://yourwebsite.com/api'
+    : '/api';
+
+  let selectedPlatform = '';
+  let activeDownloads  = 0;   // track concurrent downloads
+
+  // ── Toast ─────────────────────────────────────────────────────────────────
+  let toastTimer = null;
+  function showToast(msg, type = 'loading', duration = 0) {
+    const toast = document.getElementById('dl-toast');
+    const spin  = document.getElementById('toast-spin');
+    const icon  = document.getElementById('toast-icon');
+    const text  = document.getElementById('toast-msg');
+    toast.className = 'show' + (type !== 'loading' ? ' ' + type : '');
+    spin.style.display  = type === 'loading' ? 'block' : 'none';
+    icon.style.display  = type !== 'loading' ? 'inline' : 'none';
+    icon.textContent    = type === 'success' ? '✓' : type === 'error' ? '✕' : '';
+    text.textContent    = msg;
+    clearTimeout(toastTimer);
+    if (duration > 0) toastTimer = setTimeout(hideToast, duration);
+  }
+  function hideToast() {
+    document.getElementById('dl-toast').className = '';
+    clearTimeout(toastTimer);
+  }
+
+  // ── Platform detection ────────────────────────────────────────────────────
+  const INSTRUCTIONS = {
+    youtube:   { title: 'How to download from YouTube',      text: 'Paste the YouTube video URL from your browser address bar. Works for regular videos and YouTube Shorts.' },
+    facebook:  { title: 'How to download from Facebook',     text: 'Right-click the video on Facebook and select "Copy video link". Works for public videos and Reels.' },
+    instagram: { title: 'How to download from Instagram',    text: 'Copy the post or Reel URL from Instagram. The account must be public to download.' },
+    twitter:   { title: 'How to download from Twitter / X',  text: 'Paste the tweet URL containing the video. Works for public tweets with video content.' },
+    tiktok:    { title: 'How to download from TikTok',       text: 'Tap Share in the TikTok app and copy the link. Works for public videos without watermark.' },
+  };
+
+  function detectPlatform(url) {
+    if (/youtube\.com|youtu\.be/.test(url))  return 'youtube';
+    if (/facebook\.com|fb\.watch/.test(url)) return 'facebook';
+    if (/instagram\.com/.test(url))          return 'instagram';
+    if (/twitter\.com|x\.com/.test(url))     return 'twitter';
+    if (/tiktok\.com/.test(url))             return 'tiktok';
+    return null;
+  }
+
+  function selectPlatform(platform, scrollTop = false) {
+    selectedPlatform = platform;
+    document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.platform === platform));
+    document.querySelectorAll('.platform-card').forEach(c => c.classList.toggle('active', c.id === 'card-' + platform));
+    const info = INSTRUCTIONS[platform];
+    if (info) {
+      document.getElementById('instr-title').textContent = info.title;
+      document.getElementById('instr-text').textContent  = info.text;
+      document.getElementById('instructions-box').classList.add('show');
+    }
+    if (scrollTop) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => document.getElementById('url-input').focus(), 600);
+    }
+  }
+
+  function selectFromGrid(platform) { selectPlatform(platform, true); }
+
+  function clearError() {
+    document.getElementById('error-msg').classList.remove('show');
+    document.getElementById('input-box').classList.remove('error');
+  }
+  function showError(msg) {
+    document.getElementById('error-text').textContent = msg;
+    document.getElementById('error-msg').classList.add('show');
+    document.getElementById('input-box').classList.add('error');
+  }
+
+  function setLoading(loading) {
+    const btn  = document.getElementById('submit-btn');
+    const icon = document.getElementById('btn-icon');
+    const text = document.getElementById('btn-text');
+    btn.disabled = loading;
+    if (loading) {
+      icon.innerHTML = '<div class="spinner"></div>';
+      text.textContent = 'Fetching...';
+    } else {
+      icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+      text.textContent = 'Get Download Links';
+    }
+  }
+
+  function formatDuration(secs) {
+    if (!secs) return '';
+    const m = Math.floor(secs / 60), s = secs % 60;
+    return m + ':' + String(s).padStart(2, '0');
+  }
+
+  // ── Download file with progress feedback ──────────────────────────────────
+  function startDownload(quality, label, url, btn) {
+    if (btn) { btn.disabled = true; btn.textContent = 'Downloading...'; }
+
+    activeDownloads++;
+    showToast(`Preparing "${label}" — please wait, this may take 30-60 seconds...`, 'loading');
+
+    // Use XMLHttpRequest so we can detect when response arrives (blob)
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `${API_BASE}/download/file?url=${encodeURIComponent(url)}&quality=${encodeURIComponent(quality)}`, true);
+    xhr.responseType = 'blob';
+    xhr.timeout = 300000; // 5 minute timeout
+
+    let secondsElapsed = 0;
+    const timer = setInterval(() => {
+      secondsElapsed++;
+      if (secondsElapsed < 60)
+        showToast(`Downloading "${label}"... (${secondsElapsed}s) — Please wait`, 'loading');
+      else
+        showToast(`Still downloading "${label}"... Large file, please wait`, 'loading');
+    }, 1000);
+
+    xhr.onload = function () {
+      clearInterval(timer);
+      activeDownloads--;
+
+      if (xhr.status === 200) {
+        const blob = xhr.response;
+        const contentDisp = xhr.getResponseHeader('Content-Disposition') || '';
+        const match = contentDisp.match(/filename="?([^"]+)"?/);
+        const filename = match ? match[1] : (quality.includes('mp3') ? 'audio.mp3' : 'video.mp4');
+
+        // Trigger browser download
+        const dlUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = dlUrl; a.download = filename;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(dlUrl), 10000);
+
+        showToast(`"${label}" downloaded successfully!`, 'success', 4000);
+      } else {
+        let errMsg = 'Download failed.';
+        try {
+          const reader = new FileReader();
+          reader.onload = () => {
+            try { errMsg = JSON.parse(reader.result).error || errMsg; } catch {}
+            showToast(errMsg, 'error', 5000);
+          };
+          reader.readAsText(xhr.response);
+        } catch { showToast(errMsg, 'error', 5000); }
+      }
+
+      if (btn) { btn.disabled = false; btn.innerHTML = dlBtnInner; }
+    };
+
+    xhr.onerror = function () {
+      clearInterval(timer); activeDownloads--;
+      showToast('Network error. Is the server running?', 'error', 5000);
+      if (btn) { btn.disabled = false; btn.innerHTML = dlBtnInner; }
+    };
+
+    xhr.ontimeout = function () {
+      clearInterval(timer); activeDownloads--;
+      showToast('Download timed out. Try a shorter video.', 'error', 5000);
+      if (btn) { btn.disabled = false; btn.innerHTML = dlBtnInner; }
+    };
+
+    xhr.send();
+  }
+
+  const dlBtnInner = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download`;
+
+  // ── Build quality row ─────────────────────────────────────────────────────
+  function buildRow(label, format, quality, url) {
+    const id = `btn-${quality.replace(/[^a-z0-9]/gi,'-')}`;
+    return `
+      <div class="quality-row">
+        <div class="quality-left">
+          <span class="format-tag">${format}</span>
+          <span class="quality-label">${label}</span>
+          <span class="audio-badge">+ audio</span>
+        </div>
+        <div class="quality-right">
+          <button id="${id}" class="dl-btn" onclick="startDownload('${quality}','${label}','${url.replace(/'/g,"\\'")}',this)">
+            ${dlBtnInner}
+          </button>
+        </div>
+      </div>`;
+  }
+
+  // ── Submit handler ────────────────────────────────────────────────────────
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const url = document.getElementById('url-input').value.trim();
+    clearError();
+
+    if (!url) { showError('Please enter a video URL'); return; }
+    let valid = false;
+    try { new URL(url); valid = true; } catch {}
+    if (!valid) { showError('Please enter a valid URL starting with https://'); return; }
+
+    const detected = detectPlatform(url);
+    if (!detected) { showError('Please enter a URL from YouTube, Facebook, Instagram, Twitter, or TikTok'); return; }
+
+    if (detected !== selectedPlatform) selectPlatform(detected);
+    setLoading(true);
+    document.getElementById('results-section').classList.remove('show');
+
+    try {
+      const res  = await fetch(`${API_BASE}/download/info?url=${encodeURIComponent(url)}`);
+      const data = await res.json();
+
+      if (!res.ok) { showError(data.error || 'Failed to fetch video info. Please try again.'); return; }
+
+      const thumbWrap = document.getElementById('thumb-wrap');
+      thumbWrap.innerHTML = data.thumbnail
+        ? `<img src="${data.thumbnail}" alt="thumbnail" class="video-thumb" onerror="this.style.display='none'">`
+        : `<div class="video-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><polygon points="10 8 16 12 10 16"/></svg></div>`;
+
+      document.getElementById('video-title').textContent   = data.title || 'Video';
+      document.getElementById('platform-meta').textContent = (data.extractor || detected).charAt(0).toUpperCase() + (data.extractor || detected).slice(1);
+      document.getElementById('duration-meta').textContent = data.duration ? formatDuration(data.duration) : '';
+
+      document.getElementById('video-options').innerHTML =
+        (data.videoOptions || []).map(o => buildRow(o.label, o.format, o.quality, url)).join('') ||
+        '<p style="color:#64748b;font-size:14px;padding:10px 0;">No video formats available.</p>';
+
+      document.getElementById('audio-options').innerHTML =
+        (data.audioOptions || []).map(o => buildRow(o.label, o.format, o.quality, url)).join('') ||
+        '<p style="color:#64748b;font-size:14px;padding:10px 0;">No audio formats available.</p>';
+
+      const sec = document.getElementById('results-section');
+      sec.classList.remove('show'); void sec.offsetHeight; sec.classList.add('show');
+      setTimeout(() => sec.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+
+    } catch {
+      showError('Network error. Is the server running? Check: http://localhost:3000');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // ── On page load: check server status ────────────────────────────────────
+  window.addEventListener('load', async () => {
+    try {
+      const res  = await fetch(`${API_BASE}/status`, { signal: AbortSignal.timeout(5000) });
+      const data = await res.json();
+      if (!data.ytdlp) {
+        const warn = document.getElementById('dep-warn');
+        warn.innerHTML = '⚠️ <strong>yt-dlp not found on this server.</strong> Downloads will not work. Install it: <code>pip3 install yt-dlp</code>';
+        warn.classList.add('show');
+      }
+    } catch {
+      // Server not reachable or old version — ignore silently
+    }
+  });
+</script>
+
+</body>
+</html>

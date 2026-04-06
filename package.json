@@ -1,0 +1,18 @@
+{
+  "name": "videodownloader",
+  "version": "1.0.0",
+  "description": "Free video downloader - YouTube, Facebook, Instagram, TikTok, Twitter",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "install-ytdlp": "pip3 install yt-dlp || pip install yt-dlp"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
